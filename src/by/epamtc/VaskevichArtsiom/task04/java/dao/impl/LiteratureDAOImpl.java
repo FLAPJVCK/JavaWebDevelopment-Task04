@@ -20,7 +20,6 @@ public class LiteratureDAOImpl implements LiteratureDAO {
     public void addLiterature(Literature newLiterature) throws DAOException {
         try (FileWriter writer = new FileWriter(PATH, true)) {
             String result = String.join(DIVIDER,
-                    newLiterature.getLiteratureId().toString(),
                     newLiterature.getName(),
                     newLiterature.getAuthor(),
                     newLiterature.getType(),

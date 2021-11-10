@@ -19,7 +19,6 @@ public class UserDAOImpl implements UserDAO {
     public void addUser(User newUser) throws DAOException {
         try (FileWriter writer = new FileWriter(PATH, true)) {
             String result = String.join(DIVIDER,
-                    newUser.getUserId().toString(),
                     newUser.getUserRole().toString(),
                     newUser.getUsername(),
                     newUser.getPassword(),
