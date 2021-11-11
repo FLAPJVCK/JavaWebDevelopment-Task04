@@ -33,6 +33,32 @@ public class LiteratureServiceImpl implements LiteratureService {
     }
 
     @Override
+    public List<Literature> viewLiterature() throws ServiceException {
+        List<Literature> allLiterature;
+
+        try {
+            allLiterature = FactoryDAO.getInstance().getLiteratureDAOImpl().readLiterature();
+        } catch (DAOException e){
+            throw new ServiceException(e.getMessage(), e);
+        }
+        return allLiterature;
+    }
+
+    @Override
+    public List<Literature> findLiterature(String name, String author, String type) throws ServiceException {
+        if (name != null) {
+            return findByName(name);
+        }
+        if (author != null) {
+            return findByAuthor(author);
+        }
+        if (type != null){
+            return findByType(type);
+        }
+        return null;
+    }
+
+    @Override
     public List<Literature> findByName(String name) throws ServiceException {
         List<Literature> foundLiterature = new ArrayList<>();
 
