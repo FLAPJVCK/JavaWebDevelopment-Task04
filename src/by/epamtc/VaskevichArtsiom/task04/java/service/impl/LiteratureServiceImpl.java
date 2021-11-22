@@ -9,9 +9,23 @@ import by.epamtc.VaskevichArtsiom.task04.java.service.ServiceException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.epamtc.VaskevichArtsiom.task04.java.service.validation.Validator.*;
+
 public class LiteratureServiceImpl implements LiteratureService {
     @Override
     public void addLiterature(String name, String author, String type) throws ServiceException {
+        if (!isValidLiteratureName(name)){
+            throw new ServiceException("Invalid literature name");
+        }
+
+        if (!isValidLiteratureAuthor(author)){
+            throw new ServiceException("Invalid literature author");
+        }
+
+        if (!isValidLiteratureType(type)){
+            throw new ServiceException("Invalid literature type");
+        }
+
         Literature newLiterature = new Literature(name, author, type);
 
         try {
@@ -23,6 +37,18 @@ public class LiteratureServiceImpl implements LiteratureService {
 
     @Override
     public void removeLiterature(String name, String author, String type) throws ServiceException {
+        if (!isValidLiteratureName(name)){
+            throw new ServiceException("Invalid literature name");
+        }
+
+        if (!isValidLiteratureAuthor(author)){
+            throw new ServiceException("Invalid literature author");
+        }
+
+        if (!isValidLiteratureType(type)){
+            throw new ServiceException("Invalid literature type");
+        }
+
         Literature oldLiterature = new Literature(name, author, type);
 
         try {
@@ -33,7 +59,7 @@ public class LiteratureServiceImpl implements LiteratureService {
     }
 
     @Override
-    public List<Literature> viewLiterature() throws ServiceException {
+    public List<Literature> viewAllLiterature() throws ServiceException {
         List<Literature> allLiterature;
 
         try {
@@ -47,12 +73,21 @@ public class LiteratureServiceImpl implements LiteratureService {
     @Override
     public List<Literature> findLiterature(String name, String author, String type) throws ServiceException {
         if (name != null) {
+            if (!isValidLiteratureName(name)){
+                throw new ServiceException("Invalid literature name");
+            }
             return findByName(name);
         }
         if (author != null) {
+            if (!isValidLiteratureAuthor(author)){
+                throw new ServiceException("Invalid literature author");
+            }
             return findByAuthor(author);
         }
         if (type != null){
+            if (!isValidLiteratureType(type)){
+                throw new ServiceException("Invalid literature type");
+            }
             return findByType(type);
         }
         return null;

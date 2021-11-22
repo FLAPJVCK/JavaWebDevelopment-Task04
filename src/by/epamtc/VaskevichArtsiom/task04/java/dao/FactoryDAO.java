@@ -6,8 +6,8 @@ import by.epamtc.VaskevichArtsiom.task04.java.dao.impl.UserDAOImpl;
 public class FactoryDAO {
     private static final FactoryDAO instance = new FactoryDAO();
 
-    private final UserDAO userDAOImpl = new UserDAOImpl();
-    private final LiteratureDAO literatureDAOImpl = new LiteratureDAOImpl();
+    private UserDAO userDAOImpl = new UserDAOImpl();
+    private LiteratureDAO literatureDAOImpl = new LiteratureDAOImpl();
 
     private FactoryDAO(){
     }
@@ -22,5 +22,13 @@ public class FactoryDAO {
 
     public LiteratureDAO getLiteratureDAOImpl() {
         return literatureDAOImpl;
+    }
+
+    public void setUserDAOImpl(UserDAO userDAOImpl) {
+        this.userDAOImpl = userDAOImpl;
+    }
+
+    public void setLiteratureDAOImpl(LiteratureDAO literatureDAOImpl) {
+        this.literatureDAOImpl = literatureDAOImpl;
     }
 }
