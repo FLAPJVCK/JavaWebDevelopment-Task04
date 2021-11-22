@@ -5,7 +5,7 @@ import by.epamtc.VaskevichArtsiom.task04.java.controller.command.impl.*;
 import java.util.HashMap;
 
 public class Action {
-    private static final Action instance = new Action();
+    private static Action instance;
     private final HashMap<String, Command> commands;
 
     private Action(){
@@ -26,6 +26,9 @@ public class Action {
     }
 
     public static Action getInstance() {
+        if (instance == null){
+            instance = new Action();
+        }
         return instance;
     }
 }

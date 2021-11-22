@@ -8,9 +8,19 @@ import by.epamtc.VaskevichArtsiom.task04.java.service.UserService;
 
 import java.util.List;
 
+import static by.epamtc.VaskevichArtsiom.task04.java.service.validation.Validator.*;
+
 public class UserServiceImpl implements UserService {
     @Override
     public void register(String username, String password) throws ServiceException {
+        if (!isValidUsername(username)){
+            throw new ServiceException("Invalid username");
+        }
+
+        if (!isValidUsername(username)){
+            throw new ServiceException("Incorrect password");
+        }
+
         User newUser = new User(username, password);
 
         try {
@@ -27,6 +37,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User logIn(String username, String password) throws ServiceException {
+        if (!isValidUsername(username)){
+            throw new ServiceException("Invalid username");
+        }
+
+        if (!isValidUsername(username)){
+            throw new ServiceException("Incorrect password");
+        }
+
         User verifyUser = new User(username, password);
         try {
             List<User> allUsers = FactoryDAO.getInstance().getUserDAOImpl().readUsers();

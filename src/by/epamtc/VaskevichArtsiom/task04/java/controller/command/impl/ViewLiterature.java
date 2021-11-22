@@ -17,7 +17,7 @@ public class ViewLiterature implements Command {
         Map<String, Object> model = new HashMap<>();
 
         try {
-            allLiterature = FactoryService.getInstance().getLiteratureServiceImpl().viewLiterature();
+            allLiterature = FactoryService.getInstance().getLiteratureServiceImpl().viewAllLiterature();
         } catch (ServiceException e) {
             model.put("message", e.getMessage());
             return new Container("Error", model);
